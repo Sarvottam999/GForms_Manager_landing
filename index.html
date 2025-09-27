@@ -1,348 +1,251 @@
-<!doctype html>
-<html lang="en" data-theme="light">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FormBoard — Unified Google Forms Manager</title>
-  <meta name="description" content="Connect multiple Google accounts, manage all your Google Forms in one place, pin favorites, search, analytics, offline caching, and more." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Clean, Google-like typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="light" />
+  <title>Google Forms Manager</title>
+  <meta name="description" content="Connect multiple Google accounts and manage all your Google Forms in one place." />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Fonts: Google Sans alternative (Poppins) with Roboto fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <!-- Favicons (optional placeholders) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='100%25' height='100%25' fill='%231a73e8'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='42' fill='white' font-family='Arial'%3EG%3C/text%3E%3C/svg%3E" />
 </head>
 
 <body>
-  <!-- Header / Nav -->
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="FormBoard home">
-        <span class="logo" aria-hidden="true">▢</span>
-        <span class="brand-text">FormBoard</span>
+  <!-- ===================== Header / Top Nav ===================== -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Google Forms Manager — Home">
+        <span class="brand-mark" aria-hidden="true">
+         <img src="imgs/logo.png" alt="" srcset="">
+
+        </span>
+        <span class="brand-text">Google Forms Manager</span>
       </a>
 
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#features">Features</a>
-        <a href="#screens">Screenshots</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+      <!-- Mobile menu toggle -->
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">
+        <span class="sr-only">Toggle navigation</span>
+        ☰
+      </button>
 
-      <div class="nav-actions">
-        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle theme">
-          <span class="icon">🌙</span>
-        </button>
-        <a class="btn btn-primary" href="#pricing">Get Pro</a>
-      </div>
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#download">Download</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <main id="top">
-    <section class="hero container">
-      <div class="hero-text reveal">
-        <h1>Manage <span class="accent">all your Google Forms</span> in one clean dashboard.</h1>
-        <p class="lead">
-          Connect multiple Google accounts, pin favorites to boards, search across everything,
-          and view response analytics — with offline-ready caching and multi-language support (English / हिन्दी).
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#screens">See Demo</a>
-          <a class="btn btn-ghost" href="#features">Explore Features</a>
+  <main>
+    <!-- ===================== Hero ===================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-title">Manage all your Google Forms—across accounts—in one place.</h1>
+          <p class="tagline">
+            Connect multiple Google accounts, organize with Favorites & Boards, and get instant response snapshots.
+          </p>
+          <div class="cta-group">
+            <a class="btn btn-primary" href="#download">Get the App</a>
+            <a class="btn btn-ghost" href="#features">See features</a>
+          </div>
+          <ul class="hero-points" role="list">
+            <li>Multi-account Google Sign-In</li>
+            <li>Unified dashboard & quick search</li>
+            <li>Offline caching for on-the-go access</li>
+          </ul>
         </div>
-        <ul class="hero-highlights">
-          <li>Unified view across accounts</li>
-          <li>Dark/Light theme</li>
-          <li>Fast. Minimal. Secure.</li>
-        </ul>
-      </div>
 
-      <div class="hero-art reveal" aria-hidden="true">
-        <!-- Clean, Google-like card mock (no gradients) -->
-        <div class="mock macbar">
-          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <div class="mock grid">
-          <div class="card">
-            <div class="pill">Pinned</div>
-            <div class="line w60"></div>
-            <div class="line w40"></div>
-            <div class="tags">
-              <span class="tag">Form</span><span class="tag">Analytics</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="line w50"></div>
-            <div class="line w30"></div>
-            <div class="chips">
-              <span class="chip"></span><span class="chip"></span><span class="chip"></span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="line w70"></div>
-            <div class="mini-bars">
-              <span></span><span></span><span></span><span></span>
-            </div>
-          </div>
-          <div class="card focus">
-            <div class="pill blue">Board: Ops</div>
-            <div class="line w55"></div>
-            <div class="line w35"></div>
-            <div class="progress"><span style="width:64%"></span></div>
-          </div>
+        <!-- Simple placeholder device mock (no external images) -->
+        <div class="device-mock" aria-hidden="true">
+          <div class="device-screen">
+            <img  class="s1" src="imgs/s1.jpg" alt="" srcset="">
+            <!-- <div class="skeleton title"></div>
+            <div class="skeleton pill"></div>
+            <div class="skeleton row"></div>
+            <div class="skeleton row"></div>
+            <div class="skeleton row"></div>
+            <div class="skeleton card"></div>
+          </div> -->
         </div>
       </div>
     </section>
 
-    <!-- Features -->
-    <section id="features" class="section">
+    <!-- ===================== Key Features ===================== -->
+    <section id="features" class="section" aria-labelledby="features-title">
       <div class="container">
-        <header class="section-header reveal">
-          <h2>Everything you need to master Google Forms</h2>
-          <p class="muted">Simple, organized, and delightfully fast.</p>
-        </header>
-
+        <h2 id="features-title">Key features</h2>
         <div class="features-grid">
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">🔗</div>
-            <h3>Connect multiple accounts</h3>
-            <p>Securely link all your Google accounts and manage forms without switching.</p>
+          <!-- Feature cards — flat, minimal, Material-like -->
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <span class="material-icons">security</span>
+
+            </div>            
+            <h3>Multi-account Google Sign-In</h3>
+            <p>Securely connect and switch between multiple Google accounts without logging out.</p>
           </article>
 
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">📋</div>
-            <h3>Unified forms view</h3>
-            <p>See and manage every form from one clean, filterable interface.</p>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">    <span class="material-icons">assignment</span>
+            </div>
+            <h3>Unified Forms Dashboard</h3>
+            <p>See every form in one searchable list with filters for owner, account, and status.</p>
           </article>
 
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">📌</div>
-            <h3>Pin to custom boards</h3>
-            <p>Star important forms and organize them into boards like “Ops”, “HR”, or “Marketing”.</p>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <span class="material-icons">analytics</span>
+            </div>
+            <h3>Response snapshots & analytics</h3>
+            <p>At-a-glance summaries, quick trends, and recent activity for faster decisions.</p>
           </article>
 
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">🔎</div>
-            <h3>Search & filter</h3>
-            <p>Blazing-fast search across titles, owners, and labels — across all accounts.</p>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <span class="material-icons">star</span>
+
+            </div>
+            <h3>Favorites & Boards</h3>
+            <p>Pin critical forms and organize projects with drag-and-drop Boards.</p>
           </article>
 
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">📈</div>
-            <h3>Response analytics</h3>
-            <p>Get quick summaries, trends, and response health at a glance.</p>
-          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <span class="material-icons">cloud_download</span>
 
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">⚡</div>
-            <h3>Smart offline caching</h3>
-            <p>Your boards and recent forms stay accessible even without internet.</p>
-          </article>
-
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">🌐</div>
-            <h3>Multi-language</h3>
-            <p>English &amp; Hindi support out of the box. हिन्दी में भी उपलब्ध.</p>
-          </article>
-
-          <article class="feature-card reveal">
-            <div class="feature-icon" aria-hidden="true">🌓</div>
-            <h3>Dark / Light theme</h3>
-            <p>Switch for your eyes and environment. Remembers your choice.</p>
+            </div>
+            <h3>Offline caching</h3>
+            <p>Keep working even without a connection—open recent forms and notes offline.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Screenshots / Demo -->
-    <section id="screens" class="section alt">
+    <!-- ===================== Screenshots / Gallery ===================== -->
+    <section id="screenshots" class="section" aria-labelledby="screenshots-title">
       <div class="container">
-        <header class="section-header reveal">
-          <h2>Product screenshots</h2>
-          <p class="muted">Placeholders for now — replace with your actual UI later.</p>
-        </header>
+        <h2 id="screenshots-title">Screenshots</h2>
+        <p class="section-lede">App UI previews (placeholders). Replace with real screenshots anytime.</p>
 
-        <div class="screens-grid">
-          <figure class="screen placeholder reveal">
-            <div class="placeholder-bar"></div>
-            <div class="placeholder-block"></div>
-            <figcaption>Dashboard — Unified forms</figcaption>
+        <!-- Use simple colored boxes as placeholders (accessible with figure/figcaption) -->
+        <div class="gallery">
+          <figure class="shot">
+            <div class="shot-box" role="img" aria-label="Sign-In flow placeholder">
+                <img src="./imgs/multi-acc.jpg" alt="" srcset="">
+
+            </div>
+            <figcaption>Multi-account Sign-In</figcaption>
           </figure>
-          <figure class="screen placeholder reveal">
-            <div class="placeholder-bar"></div>
-            <div class="placeholder-block"></div>
-            <figcaption>Boards — Pinned favorites</figcaption>
+          <!-- <figure class="shot">
+            <div class="shot-box" role="img" aria-label="Dashboard placeholder">
+                <img src="./imgs/fav.jpg" alt="" srcset="">
+
+            </div>
+            <figcaption>Unified Forms Dashboard</figcaption>
+          </figure> -->
+          <figure class="shot">
+            <div class="shot-box" role="img" aria-label="Analytics placeholder">
+                <img src="./imgs/res-snap.jpg" alt="" srcset="">
+
+            </div>
+            <figcaption>Response Snapshots</figcaption>
           </figure>
-          <figure class="screen placeholder reveal">
-            <div class="placeholder-bar"></div>
-            <div class="placeholder-block"></div>
-            <figcaption>Analytics — Response summaries</figcaption>
+          <figure class="shot">
+            <div class="shot-box" role="img" aria-label="Boards placeholder">
+                <img src="./imgs/fav.jpg"  alt="" srcset="">
+            </div>
+            <figcaption>Favorites & Boards</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="section">
-      <div class="container">
-        <header class="section-header reveal">
-          <h2>Transparent pricing</h2>
-          <p class="muted">Start free. Upgrade when you’re ready.</p>
-        </header>
-
-        <div class="pricing-grid">
-          <article class="plan reveal">
-            <h3>Free</h3>
-            <p class="price">$0<span class="period">/mo</span></p>
-            <ul class="list">
-              <li>Connect 1 Google account</li>
-              <li>View & manage forms</li>
-              <li>Basic search</li>
-              <li>Light theme</li>
-            </ul>
-            <a class="btn btn-ghost" href="#top">Get Started</a>
-          </article>
-
-          <article class="plan highlight reveal" aria-label="Pro plan">
-            <div class="badge">Popular</div>
-            <h3>Pro</h3>
-            <p class="price">$9<span class="period">/mo</span></p>
-            <ul class="list">
-              <li>Multiple Google accounts</li>
-              <li>Boards & favorites</li>
-              <li>Advanced search & filters</li>
-              <li>Analytics & summaries</li>
-              <li>Offline caching</li>
-              <li>English / Hindi</li>
-              <li>Dark / Light mode</li>
-            </ul>
-            <a class="btn btn-primary" href="#top">Start Pro Trial</a>
-          </article>
+    <!-- ===================== Download / CTA ===================== -->
+    <section id="download" class="section cta" aria-labelledby="download-title">
+      <div class="container cta-inner">
+        <div>
+          <h2 id="download-title">Get Google Forms Manager</h2>
+          <p>Available for Android and iOS. Connect multiple accounts and take control of your forms.</p>
+        </div>
+        <div class="store-buttons">
+          <!-- Placeholder links/icons; replace href with actual store URLs -->
+          <a class="store-btn" href="#" aria-label="Get it on Google Play">
+            <span class="store-mark"><img src="./imgs/play-store.png" alt="" srcset=""></span>
+            <span><strong>Google Play</strong><br><small>Download for Android</small></span>
+          </a>
+          <!-- <a class="store-btn" href="#" aria-label="Download on the App Store">
+            <span class="store-mark"></span>
+            <span><strong>App Store</strong><br><small>Download for iOS</small></span>
+          </a> -->
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="section alt">
+    <!-- ===================== Contact ===================== -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
       <div class="container">
-        <header class="section-header reveal">
-          <h2>Loved by operations & HR teams</h2>
-          <p class="muted">What early users say (placeholder text).</p>
-        </header>
-
-        <div class="testimonials-grid">
-          <blockquote class="t-card reveal">
-            “We connected four Google accounts and instantly saw everything in one place. Searching forms finally feels easy.”
-            <footer>— Samir, Ops Lead</footer>
-          </blockquote>
-
-          <blockquote class="t-card reveal">
-            “Boards are a life-saver. We pin onboarding and audit forms so the team always finds the right one.”
-            <footer>— Neha, HR Manager</footer>
-          </blockquote>
-
-          <blockquote class="t-card reveal">
-            “Quick response summaries help us decide when to close a survey. The dark mode is perfect in late shifts.”
-            <footer>— Arjun, Plant Admin</footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <div class="container">
-        <header class="section-header reveal">
-          <h2>Frequently asked questions</h2>
-          <p class="muted">Quick answers to common questions.</p>
-        </header>
-
-        <div class="faq-list">
-          <details class="faq-item reveal">
-            <summary>How do multiple Google accounts work?</summary>
-            <p>You’ll sign in to each account securely via Google OAuth. Forms from all connected accounts appear in one interface.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Do you store my form data?</summary>
-            <p>Your data stays with Google. We cache only what’s needed for speed and offline access, stored securely on your device.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Is there an offline mode?</summary>
-            <p>Yes. Recent forms and boards are cached so you can access them even without an internet connection.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>Which languages are supported?</summary>
-            <p>English and Hindi at launch. More languages are planned.</p>
-          </details>
-        </div>
+        <h2 id="contact-title">Contact</h2>
+        <p>Questions or feedback? Email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ===================== Footer ===================== -->
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="brand muted">
-          <span class="logo">▢</span> FormBoard
-        </div>
-        <p class="muted small">© <span id="year"></span> FormBoard. All rights reserved.</p>
-      </div>
-
-      <nav class="footer-links" aria-label="Secondary">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Google Forms Manager</p>
+      <nav aria-label="Footer">
+        <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
       </nav>
-
-      <div class="footer-contact">
-        <p class="label">Contact</p>
-        <a href="mailto:hello@formboard.app">hello@formboard.app</a>
-      </div>
     </div>
   </footer>
 
-  <!-- Minimal JavaScript: theme toggle, reveal on scroll, small UX niceties -->
+  <!-- Minimal, unobtrusive JS: mobile nav toggle + current year + smooth hash scroll -->
   <script>
     (function () {
-      const root = document.documentElement;
-      const THEME_KEY = "fb-theme";
-      const saved = localStorage.getItem(THEME_KEY);
-      if (saved) root.setAttribute("data-theme", saved);
-      else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        root.setAttribute("data-theme", "dark");
-      }
-
-      const toggle = document.getElementById("themeToggle");
-      toggle.addEventListener("click", () => {
-        const current = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        root.setAttribute("data-theme", current);
-        localStorage.setItem(THEME_KEY, current);
-        toggle.querySelector(".icon").textContent = current === "dark" ? "🌞" : "🌙";
+      const nav = document.getElementById('primaryNav');
+      const toggle = document.getElementById('navToggle');
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
       });
 
-      // Set correct icon initially
-      toggle.querySelector(".icon").textContent =
-        (root.getAttribute("data-theme") === "dark") ? "🌞" : "🌙";
+      // Close nav after clicking a link on mobile
+      nav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
 
-      // Reveal on scroll (simple, performant)
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
+      // Current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Smooth in-page scroll (native CSS handles most; this is a small assist for older browsers)
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (id.length > 1) {
+            const el = document.querySelector(id);
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }
         });
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-      // Current year in footer
-      document.getElementById("year").textContent = new Date().getFullYear();
+      });
     })();
   </script>
 </body>
