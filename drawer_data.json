@@ -1,0 +1,32 @@
+[
+    {
+      "title": "Help & Feedback",
+      "icon": "help",
+      "action": { "type": "web", "link": "https://example.com/help" }
+    },
+    {
+      "title": "Share App",
+      "icon": "share",
+      "action": {
+        "type": "share",
+        "message": "Check out this app!",
+        "link": "https://play.google.com/store/apps/details?id=com.example.app"
+      }
+    },
+    {
+      "title": "Privacy Policy",
+      "icon": "privacy",
+      "action": { "type": "web", "link": "https://example.com/privacy" }
+    },
+    {
+      "title": "Terms of Use",
+      "icon": "terms",
+      "action": { "type": "web", "link": "https://example.com/terms" }
+    },
+    {
+      "title": "About",
+      "icon": "about",
+      "action": { "type": "web", "link": "https://example.com/about" }
+    }
+  ]
+  
