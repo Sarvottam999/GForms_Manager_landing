@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Help & Feedback • Multi-Account Google Forms Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Get help, read FAQs, and send feedback for the Multi-Account Google Forms Manager app." />
+  <!-- Fonts & Icons (Google-like, clean, accessible) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@300;400;600;700" rel="stylesheet" />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #fafafa;
+      --on-surface: #1f1f1f;
+      --on-surface-2: #444;
+      --primary: #1a73e8; /* Google-ish blue */
+      --primary-ink: #0b57d0;
+      --outline: #e6e6e6;
+      --outline-2: #d9d9d9;
+      --success: #137333;
+      --warning: #b06000;
+      --error: #b3261e;
+      --focus: 3px solid #c2dbff;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+      --shadow-1: 0 1px 2px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 4%);
+      --shadow-2: 0 2px 8px rgb(0 0 0 / 8%), 0 8px 24px rgb(0 0 0 / 6%);
+      --shadow-focus: 0 0 0 4px rgb(26 115 232 / 18%);
+      --container: 1080px;
+      --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--font-sans);
+      color: var(--on-surface);
+      background: linear-gradient(#fff, #fbfbfb 40%, #f8f8f8 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Top App Bar */
+    .appbar{
+      position: sticky; top:0; z-index: 100;
+      backdrop-filter: saturate(1.1) blur(8px);
+      background: rgba(255,255,255,0.85);
+      border-bottom: 1px solid var(--outline);
+    }
+    .appbar-inner{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo{
+      width: 28px; height: 28px; border-radius: 8px;
+      background: conic-gradient(from 180deg at 50% 50%, #1a73e8, #34a853, #fbbc04, #ea4335, #1a73e8);
+      box-shadow: inset 0 0 0 3px #fff;
+      flex: 0 0 auto;
+    }
+    .brand{
+      font-weight: 700; letter-spacing: .2px;
+    }
+    .breadcrumbs{
+      margin-left: auto; color: var(--on-surface-2); font-size: 14px;
+    }
+    .breadcrumbs a{ color: var(--on-surface-2); text-decoration: none; }
+    .breadcrumbs a:hover{ text-decoration: underline; }
+
+    /* Page Header */
+    .hero{
+      max-width: var(--container);
+      margin: 24px auto 8px;
+      padding: 0 20px 20px;
+    }
+    .hero h1{
+      font-size: clamp(24px, 2.2vw + 10px, 34px);
+      margin: 10px 0 8px;
+      letter-spacing: .2px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--on-surface-2);
+      max-width: 70ch;
+    }
+
+    /* Search Card */
+    .search-card{
+      max-width: var(--container);
+      margin: 16px auto 24px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-1);
+    }
+    .search{
+      display:flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border: 1px solid var(--outline-2);
+      border-radius: 999px;
+      background:#fff;
+    }
+    .search input{
+      border:0; outline: none; flex:1; font-size:16px; background: transparent; color: var(--on-surface);
+    }
+    .icon{
+      font-family: "Material Symbols Rounded"; font-variation-settings: 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px; line-height: 1; color: var(--on-surface-2);
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+    .chip{
+      padding:6px 12px; border:1px solid var(--outline-2);
+      border-radius: 999px; background: #fff; font-size: 13px; cursor:pointer;
+    }
+    .chip:hover{ border-color: var(--primary); color: var(--primary); }
+
+    /* Layout */
+    .grid{
+      max-width: var(--container);
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+    @media (max-width: 960px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-1);
+      padding: 16px;
+    }
+    .card h2{
+      font-size: 18px; margin: 4px 0 12px;
+    }
+    .subtle{ color: var(--on-surface-2); font-size: 14px; }
+
+    /* Accordion (FAQ) */
+    details.faq{
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      background: #fff;
+    }
+    details.faq + details.faq{ margin-top: 10px; }
+    details.faq[open]{ box-shadow: var(--shadow-1); }
+    summary{
+      list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px;
+      font-weight: 600; color: #202124;
+    }
+    summary::-webkit-details-marker{ display:none }
+    summary .summary-icon{
+      transition: transform .2s ease;
+    }
+    details[open] summary .summary-icon{ transform: rotate(180deg); }
+    .faq .answer{ margin: 10px 2px 2px; color: var(--on-surface-2); line-height: 1.6; }
+
+    /* Help topics list */
+    .list{
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px;
+    }
+    @media (max-width:720px){ .list{ grid-template-columns: 1fr; } }
+    .list a{
+      display:flex; gap:10px; align-items:center;
+      padding: 12px 12px;
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-md);
+      text-decoration: none; color: var(--on-surface);
+      background: #fff;
+    }
+    .list a:hover{ border-color: var(--primary); box-shadow: var(--shadow-1); }
+    .list .meta{ font-size: 13px; color: var(--on-surface-2); }
+
+    /* Contact */
+    .contact-actions{
+      display:flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 14px; border-radius: 999px; border: 1px solid var(--outline-2);
+      background:#fff; color: var(--on-surface); text-decoration: none; font-weight: 500;
+    }
+    .btn.primary{ border-color: var(--primary); color: #fff; background: var(--primary); }
+    .btn.ghost:hover{ border-color: var(--primary); color: var(--primary); }
+
+    /* Feedback form */
+    form .row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    @media (max-width:720px){ form .row{ grid-template-columns: 1fr; } }
+    label{ display:block; font-weight: 600; margin: 10px 0 6px; }
+    input[type="text"], input[type="email"], select, textarea{
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--outline-2);
+      font: inherit; background: #fff; color: var(--on-surface);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .helptext{ font-size: 12px; color: var(--on-surface-2); margin-top: 6px; }
+    .rating{ display:flex; gap:6px; align-items:center; }
+    .star{
+      font-family: "Material Symbols Rounded"; cursor: pointer; font-size: 26px; user-select: none;
+      color: #c7d2fe;
+    }
+    .star.active{ color: var(--primary); }
+    .policy{
+      margin-top:10px; font-size: 13px; color: var(--on-surface-2);
+    }
+    .form-actions{
+      display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top: 14px;
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--outline);
+      background: var(--surface-2);
+      margin-top: 40px;
+    }
+    .footer-inner{
+      max-width: var(--container);
+      margin: 0 auto; padding: 20px;
+      color: var(--on-surface-2); font-size: 14px;
+      display:flex; flex-wrap:wrap; align-items:center; gap:10px; justify-content: space-between;
+    }
+    .links{ display:flex; gap:14px; flex-wrap:wrap; }
+    .links a{ color: inherit; text-decoration: none; }
+    .links a:hover{ text-decoration: underline; }
+
+    /* Focus & a11y */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible{
+      outline: none; box-shadow: var(--shadow-focus);
+      border-radius: 10px;
+    }
+
+    /* Toast */
+    .toast{
+      position: fixed; right: 20px; bottom: 20px; z-index: 200;
+      padding: 12px 14px; border-radius: 12px; color: #0b231c; background: #e6f4ea; border: 1px solid #c9e7d4;
+      box-shadow: var(--shadow-2); display:none;
+    }
+    .toast.error{ background: #fde8e6; border-color: #f5c5c1; color: #3b0b0b; }
+  </style>
+</head>
+<body>
+  <!-- App Bar -->
+  <header class="appbar" role="banner">
+    <div class="appbar-inner">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="brand">Multi-Account Google Forms Manager</div>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="#">Home</a> ▸ <span aria-current="page">Help &amp; Feedback</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Help &amp; Feedback</h1>
+    <p>Find quick answers, troubleshoot common issues, and share feedback to help us improve. We usually respond within 2–3 business days.</p>
+  </section>
+
+  <!-- Search -->
+  <section class="search-card" aria-labelledby="searchHeading">
+    <h2 id="searchHeading" class="visually-hidden" style="position:absolute;left:-9999px">Search Help</h2>
+    <div class="search" role="search">
+      <span class="icon" aria-hidden="true">search</span>
+      <input id="helpSearch" type="text" placeholder="Search help topics (e.g., add account, cache, responses)" aria-label="Search help topics">
+      <button class="btn" id="searchBtn" type="button" aria-label="Search">Search</button>
+    </div>
+    <div class="chips" aria-label="Quick filters">
+      <button class="chip" data-chip="accounts">Accounts</button>
+      <button class="chip" data-chip="drive">Drive &amp; Forms</button>
+      <button class="chip" data-chip="responses">Responses</button>
+      <button class="chip" data-chip="favorites">Favorites &amp; Boards</button>
+      <button class="chip" data-chip="cache">Cache</button>
+      <button class="chip" data-chip="i18n">Language &amp; Theme</button>
+    </div>
+  </section>
+
+  <!-- Main Grid -->
+  <main class="grid" role="main">
+    <!-- Left: Help Topics + FAQ -->
+    <section class="card" aria-labelledby="topicsHeading">
+      <h2 id="topicsHeading">Popular Help Topics</h2>
+      <div class="list" id="topicList">
+        <a href="#faq-accounts" aria-label="Manage multiple Google accounts">
+          <span class="icon" aria-hidden="true">account_circle</span>
+          <div>
+            <div>Manage multiple Google accounts</div>
+            <div class="meta">Add, remove, or switch accounts; silent auth &amp; re-auth scopes.</div>
+          </div>
+        </a>
+        <a href="#faq-drive" aria-label="Browse forms from Google Drive">
+          <span class="icon" aria-hidden="true">description</span>
+          <div>
+            <div>Browse forms from Google Drive</div>
+            <div class="meta">Permissions, listing, opening forms in browser.</div>
+          </div>
+        </a>
+        <a href="#faq-responses" aria-label="Response snapshots">
+          <span class="icon" aria-hidden="true">insights</span>
+          <div>
+            <div>Response snapshots</div>
+            <div class="meta">Totals, last response time, and 7-day trend mini-chart.</div>
+          </div>
+        </a>
+        <a href="#faq-favorites" aria-label="Favorites & Boards">
+          <span class="icon" aria-hidden="true">star</span>
+          <div>
+            <div>Favorites &amp; Boards</div>
+            <div class="meta">Pin forms or create custom boards for quick access.</div>
+          </div>
+        </a>
+        <a href="#faq-cache" aria-label="Offline caching">
+          <span class="icon" aria-hidden="true">cloud_done</span>
+          <div>
+            <div>Offline caching</div>
+            <div class="meta">Fresh vs. stale cache, clearing cache, storage location.</div>
+          </div>
+        </a>
+        <a href="#faq-i18n" aria-label="Language & Theme">
+          <span class="icon" aria-hidden="true">translate</span>
+          <div>
+            <div>Language &amp; Theme</div>
+            <div class="meta">Switch between English/Hindi and light/dark/system.</div>
+          </div>
+        </a>
+      </div>
+
+      <h2 style="margin-top:18px">FAQs</h2>
+
+      <details class="faq" id="faq-accounts">
+        <summary>
+          <span class="summary-icon icon" aria-hidden="true">expand_more</span>
+          How do I add or remove Google accounts?
+        </summary>
+        <div class="answer">
+          Open the app drawer → <em>Accounts</em> → <em>Add account</em>. We use GoogleSignIn v7 with safe token handling. To remove, long-press the account and choose <em>Remove</em>. If silent auth fails, you may be prompted to re-authorize scopes.
+        </div>
+      </details>
+
+      <details class="faq" id="faq-drive">
+        <summary>
+          <span class="summary-icon icon" aria-hidden="true">expand_more</span>
+          Why can’t I see some forms from Drive?
+        </summary>
+        <div class="answer">
+          Ensure you granted Drive access for each connected account. We list forms from <em>My Drive</em> and shared locations you can access. For forms owned by other users, verify permissions and try <em>Pull to refresh</em>.
+        </div>
+      </details>
+
+      <details class="faq" id="faq-responses">
+        <summary>
+          <span class="summary-icon icon" aria-hidden="true">expand_more</span>
+          What are “Response Snapshots”?
+        </summary>
+        <div class="answer">
+          For each form, we fetch metadata (total responses, last response time) and render a 7-day trend mini-chart. Counts may differ from the live form until the next refresh or when offline.
+        </div>
+      </details>
+
+      <details class="faq" id="faq-favorites">
+        <summary>
+          <span class="summary-icon icon" aria-hidden="true">expand_more</span>
+          How do Favorites &amp; Boards work?
+        </summary>
+        <div class="answer">
+          Tap the ☆ on any form to favorite it. Create Boards from the drawer to group forms (e.g., “Team A”, “Quarterly”). Filters let you view All, Favorites, or a specific Board.
+        </div>
+      </details>
+
+      <details class="faq" id="faq-cache">
+        <summary>
+          <span class="summary-icon icon" aria-hidden="true">expand_more</span>
+          How is data cached? Can I clear it?
+        </summary>
+        <div class="answer">
+          We use a local cache with freshness rules. If stale, the app fetches updates in the background. Clear cache from <em>Settings → Storage</em>. Clearing cache won’t remove your linked accounts.
+        </div>
+      </details>
+
+      <details class="faq" id="faq-i18n">
+        <summary>
+          <span class="summary-icon icon" aria-hidden="true">expand_more</span>
+          Can I switch language or theme?
+        </summary>
+        <div class="answer">
+          Yes. Go to the drawer → <em>Language</em> to toggle English/Hindi. Under <em>Theme</em>, choose System, Light, or Dark. Your choice is saved locally.
+        </div>
+      </details>
+    </section>
+
+    <!-- Right: Troubleshooting + Contact + Feedback -->
+    <aside class="card" aria-labelledby="troubleshootHeading">
+      <h2 id="troubleshootHeading">Troubleshooting</h2>
+      <ol class="subtle" style="margin-top:8px; padding-left:18px">
+        <li>Check network connectivity and try again.</li>
+        <li>Verify the correct Google account is active.</li>
+        <li>Pull to refresh on the Forms list page.</li>
+        <li>Re-authorize scopes if prompted during sign-in.</li>
+        <li>Clear cache from the drawer and relaunch the app.</li>
+      </ol>
+
+      <h2 style="margin-top:16px">Contact</h2>
+      <p class="subtle">Need personalized help? Choose an option below.</p>
+      <div class="contact-actions">
+        <a class="btn primary" href="mailto:support@example.com?subject=Help%20with%20Forms%20Manager" aria-label="Email support">
+          <span class="icon" aria-hidden="true">mail</span>Email Support
+        </a>
+        <a class="btn ghost" href="#" onclick="window.print(); return false;" aria-label="Print this help page">
+          <span class="icon" aria-hidden="true">print</span>Print
+        </a>
+        <a class="btn ghost" href="#feedback" aria-label="Jump to feedback form">
+          <span class="icon" aria-hidden="true">rate_review</span>Give Feedback
+        </a>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--outline); margin:16px 0">
+
+      <h2 id="feedback">Feedback</h2>
+      <p class="subtle">Tell us what’s working well and what we can improve.</p>
+
+      <form id="feedbackForm" novalidate>
+        <div class="row">
+          <div>
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option>Accounts & Sign-in</option>
+              <option>Drive & Forms</option>
+              <option>Response Snapshots</option>
+              <option>Favorites & Boards</option>
+              <option>Cache & Storage</option>
+              <option>Language & Theme</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="email">Email (optional)</label>
+            <input id="email" name="email" type="email" inputmode="email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+        </div>
+
+        <label>How satisfied are you?</label>
+        <div class="rating" aria-label="Satisfaction rating from 1 to 5">
+          <span class="star" data-val="1" aria-label="1 star">grade</span>
+          <span class="star" data-val="2" aria-label="2 stars">grade</span>
+          <span class="star" data-val="3" aria-label="3 stars">grade</span>
+          <span class="star" data-val="4" aria-label="4 stars">grade</span>
+          <span class="star" data-val="5" aria-label="5 stars">grade</span>
+          <input type="hidden" id="rating" name="rating" value="">
+        </div>
+        <div class="helptext">Tap a star to rate from 1 (poor) to 5 (excellent).</div>
+
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" placeholder="Describe the issue, steps to reproduce, or your idea…" required></textarea>
+
+        <div class="policy">
+          <label style="font-weight: 500">
+            <input type="checkbox" id="consent" required>
+            I agree to the processing of my input for support and product improvement. See our <a href="#privacy">Privacy Policy</a>.
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="reset" class="btn ghost" aria-label="Reset form"><span class="icon" aria-hidden="true">undo</span>Reset</button>
+          <button type="submit" class="btn primary" aria-label="Submit feedback"><span class="icon" aria-hidden="true">send</span>Submit</button>
+        </div>
+      </form>
+    </aside>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Multi-Account Google Forms Manager</div>
+      <nav class="links" aria-label="Footer links">
+        <a href="#" id="shareLink">Share App</a>
+        <a href="#" id="aboutLink">About</a>
+        <a href="#" id="termsLink">Terms of Use</a>
+        <a href="#" id="privacy">Privacy Policy</a>
+        <a href="#">System Status</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Utilities
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+    // Year
+    $("#year").textContent = new Date().getFullYear();
+
+    // Search (client-side example: filters FAQs by text or chip)
+    const searchInput = $("#helpSearch");
+    const topicList = $("#topicList");
+    const faqs = $$(".faq");
+    const toast = $("#toast");
+
+    function showToast(msg, kind='success'){
+      toast.className = 'toast' + (kind==='error' ? ' error' : '');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(()=> toast.style.display='none', 2800);
+    }
+
+    function filterHelp(query){
+      const q = query.trim().toLowerCase();
+      // Filter FAQs
+      faqs.forEach(d=>{
+        const text = d.textContent.toLowerCase();
+        d.style.display = !q || text.includes(q) ? 'block' : 'none';
+      });
+      // Subtle feedback
+      showToast(q ? `Filtered results for “${query}”` : 'Showing all results');
+    }
+
+    $("#searchBtn").addEventListener('click', ()=> filterHelp(searchInput.value));
+    searchInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ filterHelp(searchInput.value); } });
+
+    // Chips quick filters
+    $$(".chip").forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        const q = chip.dataset.chip || '';
+        searchInput.value = q;
+        filterHelp(q);
+      });
+    });
+
+    // FAQ accordion keyboard support (summary already accessible)
+    $$(".faq summary").forEach(s => {
+      s.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); s.click(); }
+      });
+    });
+
+    // Rating stars
+    const stars = $$(".star");
+    const ratingInput = $("#rating");
+    function setRating(n){
+      ratingInput.value = n;
+      stars.forEach((s,i)=> s.classList.toggle('active', i < n));
+    }
+    stars.forEach(star=>{
+      star.addEventListener('click', ()=> setRating(Number(star.dataset.val)));
+      star.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); star.click(); } });
+      star.setAttribute('tabindex', '0');
+      star.setAttribute('role', 'button');
+    });
+
+    // Feedback form validation + fake submit
+    $("#feedbackForm").addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const topic = $("#topic").value;
+      const email = $("#email").value.trim();
+      const rating = $("#rating").value;
+      const message = $("#message").value.trim();
+      const consent = $("#consent").checked;
+
+      // simple validation
+      if(!topic || !message || !consent){
+        showToast("Please complete required fields.", 'error');
+        return;
+      }
+      if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        showToast("Please enter a valid email.", 'error');
+        return;
+      }
+
+      // TODO: Replace with your backend endpoint or mailto
+      // Example payload
+      const payload = { topic, email: email || null, rating: rating ? Number(rating) : null, message, ts: new Date().toISOString() };
+      console.log("Feedback payload:", payload);
+
+      // UX reset & confirmation
+      e.target.reset();
+      setRating(0);
+      showToast("Thanks for your feedback!");
+    });
+
+    // Share handler (Web Share API if available)
+    $("#shareLink").addEventListener('click', async (e)=>{
+      e.preventDefault();
+      const shareData = {
+        title: 'Multi-Account Google Forms Manager',
+        text: 'Manage all your Google Forms across accounts in one place.',
+        url: location.origin
+      };
+      try{
+        if(navigator.share){ await navigator.share(shareData); }
+        else {
+          await navigator.clipboard.writeText(shareData.url);
+          showToast("Link copied to clipboard");
+        }
+      } catch(err){ showToast("Couldn’t share right now.", 'error'); }
+    });
+
+    // Placeholder nav links
+    $("#aboutLink").addEventListener('click', (e)=>{ e.preventDefault(); showToast("About page coming soon"); });
+    $("#termsLink").addEventListener('click', (e)=>{ e.preventDefault(); showToast("Terms page coming soon"); });
+  </script>
+</body>
+</html>
