@@ -2,7 +2,7 @@
     {
       "title": "Help & Feedback",
       "icon": "help",
-      "action": { "type": "web", "link": "https://example.com/help" }
+      "action": { "type": "web", "link": "https://sarvottam999.github.io/GForms_Manager_landing/help_and_feadback.html" }
     },
     {
       "title": "Share App",
@@ -16,17 +16,17 @@
     {
       "title": "Privacy Policy",
       "icon": "privacy",
-      "action": { "type": "web", "link": "https://example.com/privacy" }
+      "action": { "type": "web", "link": "https://sarvottam999.github.io/GForms_Manager_landing/privacy_policy.html" }
     },
     {
       "title": "Terms of Use",
       "icon": "terms",
-      "action": { "type": "web", "link": "https://example.com/terms" }
+      "action": { "type": "web", "link": "https://sarvottam999.github.io/GForms_Manager_landing/term_of_use.html" }
     },
     {
       "title": "About",
       "icon": "about",
-      "action": { "type": "web", "link": "https://example.com/about" }
+      "action": { "type": "web", "link": "https://sarvottam999.github.io/GForms_Manager_landing/about.html" }
     }
   ]
   
